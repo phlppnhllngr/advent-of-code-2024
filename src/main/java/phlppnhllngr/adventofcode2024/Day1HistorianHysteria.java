@@ -63,7 +63,7 @@ public class Day1HistorianHysteria {
                 }
                 int bCount = 1;
                 for (var n = j + 1; n < list2.size(); n++) {
-                    if (list2.get(n) == b) {
+                    if (list2.get(n) == num) {
                         bCount++;
                     }
                     else {
