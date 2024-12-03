@@ -1,6 +1,5 @@
 package phlppnhllngr.adventofcode2024;
 
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.IntFunction;
 import java.util.regex.MatchResult;
@@ -24,33 +23,28 @@ public class Day3MullItOver {
     }
 
     static int evaluateWithConditionalsUsingRegex(String input) {
-        var toggle = new AtomicBoolean(true);
+        var enabled = new AtomicBoolean(true);
         return Pattern.compile("(?<=mul\\()\\d{1,3},\\d{1,3}(?=\\))|(do(n't)?\\(\\))")
                 .matcher(input)
                 .results()
                 .map(MatchResult::group)
-                .map(group -> {
+                .mapToInt(group -> {
                     if ("do()".equals(group)) {
-                        toggle.set(true);
-                        return null;
+                        enabled.set(true);
                     } else if ("don't()".equals(group)) {
-                        toggle.set(false);
-                        return null;
-                    } else if (toggle.get()) {
+                        enabled.set(false);
+                    } else if (enabled.get()) {
                         String[] parts = group.split(",");
                         return Integer.parseInt(parts[0]) * Integer.parseInt(parts[1]);
-                    } else {
-                        return null;
                     }
+                    return 0;
                 })
-                .filter(Objects::nonNull)
-                .mapToInt(Integer::intValue)
                 .sum();
     }
 
-    static int evaluateWithConditionalsUsingParser(String input) {
+    static int evaluateWithConditionalsReadingChars(String input) {
         var result = 0;
-        var toggle = true;
+        var enabled = true;
         IntFunction<Character> safeCharAt = idx -> {
             if (idx < input.length()) return input.charAt(idx);
             return Character.MIN_VALUE;
@@ -62,13 +56,13 @@ public class Day3MullItOver {
                     i += 2;
                     continue;
                 }
-                if (!toggle && safeCharAt.apply(i + 2) == '(') {
+                if (!enabled && safeCharAt.apply(i + 2) == '(') {
                     if (safeCharAt.apply(i + 3) == ')') {
-                        toggle = true;
+                        enabled = true;
                     }
                     i += 4;
                     continue;
-                } else if (toggle && safeCharAt.apply(i + 2) == 'n') {
+                } else if (enabled && safeCharAt.apply(i + 2) == 'n') {
                     if (safeCharAt.apply(i + 3) != '\'') {
                         i += 4;
                         continue;
@@ -82,7 +76,7 @@ public class Day3MullItOver {
                         continue;
                     }
                     if (safeCharAt.apply(i + 6) == ')') {
-                        toggle = false;
+                        enabled = false;
                     }
                     i += 7;
                     continue;
@@ -90,7 +84,7 @@ public class Day3MullItOver {
                     i += 3;
                     continue;
                 }
-            } else if (toggle && safeCharAt.apply(i) == 'm') {
+            } else if (enabled && safeCharAt.apply(i) == 'm') {
                 if (safeCharAt.apply(i + 1) == 'u') {
                     if (safeCharAt.apply(i + 2) == 'l') {
                         if (safeCharAt.apply(i + 3) == '(') {

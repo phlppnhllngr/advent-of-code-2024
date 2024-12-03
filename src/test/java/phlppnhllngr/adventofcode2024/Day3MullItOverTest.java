@@ -20,14 +20,14 @@ public class Day3MullItOverTest {
     @Test
     void part2_example() {
         var input = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))";
-        assertEquals(Day3MullItOver.evaluateWithConditionalsUsingParser(input), 48);
+        assertEquals(Day3MullItOver.evaluateWithConditionalsReadingChars(input), 48);
     }
 
     @Test
     void part_2_using_parser() {
         String input = Day3MullItOver.readInput();
         var before = System.currentTimeMillis();
-        assertEquals(Day3MullItOver.evaluateWithConditionalsUsingParser(input), 76911921);
+        assertEquals(Day3MullItOver.evaluateWithConditionalsReadingChars(input), 76911921);
         System.out.println(System.currentTimeMillis() - before); // 4-5 ms
     }
 
