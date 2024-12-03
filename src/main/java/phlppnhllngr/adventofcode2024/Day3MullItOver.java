@@ -61,7 +61,6 @@ public class Day3MullItOver {
                         enabled = true;
                     }
                     i += 4;
-                    continue;
                 } else if (enabled && safeCharAt.apply(i + 2) == 'n') {
                     if (safeCharAt.apply(i + 3) != '\'') {
                         i += 4;
@@ -79,10 +78,8 @@ public class Day3MullItOver {
                         enabled = false;
                     }
                     i += 7;
-                    continue;
                 } else {
                     i += 3;
-                    continue;
                 }
             } else if (enabled && safeCharAt.apply(i) == 'm') {
                 if (safeCharAt.apply(i + 1) == 'u') {
@@ -115,14 +112,11 @@ public class Day3MullItOver {
                                                     result += multiplicand * multiplier;
                                                 }
                                                 i += 10;
-                                                continue;
                                             } else {
                                                 i += 9;
-                                                continue;
                                             }
                                         } else {
                                             i += 8;
-                                            continue;
                                         }
                                     } else if (safeCharAt.apply(i + 6) == ',') {
                                         if (Character.isDigit(safeCharAt.apply(i + 7))) {
@@ -148,14 +142,11 @@ public class Day3MullItOver {
                                                 result += multiplicand * multiplier;
                                             }
                                             i += 9;
-                                            continue;
                                         } else {
                                             i += 8;
-                                            continue;
                                         }
                                     } else {
                                         i += 7;
-                                        continue;
                                     }
                                 } else if (safeCharAt.apply(i + 5) == ',') {
                                     if (Character.isDigit(safeCharAt.apply(i + 6))) {
@@ -181,34 +172,26 @@ public class Day3MullItOver {
                                             result += multiplicand * multiplier;
                                         }
                                         i += 8;
-                                        continue;
                                     } else {
                                         i += 7;
-                                        continue;
                                     }
                                 } else {
                                     i += 6;
-                                    continue;
                                 }
                             } else {
                                 i += 5;
-                                continue;
                             }
                         } else {
                             i += 4;
-                            continue;
                         }
                     } else {
                         i += 3;
-                        continue;
                     }
                 } else {
                     i += 2;
-                    continue;
                 }
             } else {
                 i += 1;
-                continue;
             }
         }
         return result;
