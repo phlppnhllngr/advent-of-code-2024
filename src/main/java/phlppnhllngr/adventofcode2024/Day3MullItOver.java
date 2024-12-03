@@ -50,34 +50,38 @@ public class Day3MullItOver {
             return Character.MIN_VALUE;
         };
 
-        for (int i = 0; i < input.length(); ) {
+        for (int i = 0; i < input.length();) {
             if (safeCharAt.apply(i) == 'd') {
                 if (safeCharAt.apply(i + 1) != 'o') {
-                    i += 2;
+                    i += 1;
                     continue;
                 }
                 if (!enabled && safeCharAt.apply(i + 2) == '(') {
-                    if (safeCharAt.apply(i + 3) == ')') {
+                    if (safeCharAt.apply(i + 3) != ')') {
+                        i += 3;
+                    } else {
                         enabled = true;
+                        i += 4;
                     }
-                    i += 4;
                 } else if (enabled && safeCharAt.apply(i + 2) == 'n') {
                     if (safeCharAt.apply(i + 3) != '\'') {
-                        i += 4;
+                        i += 3;
                         continue;
                     }
                     if (safeCharAt.apply(i + 4) != 't') {
-                        i += 5;
+                        i += 4;
                         continue;
                     }
                     if (safeCharAt.apply(i + 5) != '(') {
-                        i += 6;
+                        i += 5;
                         continue;
                     }
-                    if (safeCharAt.apply(i + 6) == ')') {
+                    if (safeCharAt.apply(i + 6) != ')') {
+                        i += 6;
+                    } else {
                         enabled = false;
+                        i += 7;
                     }
-                    i += 7;
                 } else {
                     i += 3;
                 }
@@ -97,26 +101,26 @@ public class Day3MullItOver {
                                                             var multiplier = Integer.parseInt(input.substring(i + 8, i + 11));
                                                             result += multiplicand * multiplier;
                                                         }
-                                                        i += 12;
+                                                        i += 11;
                                                         continue;
                                                     } else if (safeCharAt.apply(i + 10) == ')') {
                                                         var multiplicand = Integer.parseInt(input.substring(i + 4, i + 7));
                                                         var multiplier = Integer.parseInt(input.substring(i + 8, i + 10));
                                                         result += multiplicand * multiplier;
                                                     }
-                                                    i += 11;
+                                                    i += 10;
                                                     continue;
                                                 } else if (safeCharAt.apply(i + 9) == ')') {
                                                     var multiplicand = Integer.parseInt(input.substring(i + 4, i + 7));
                                                     var multiplier = Integer.parseInt(input.substring(i + 8, i + 9));
                                                     result += multiplicand * multiplier;
                                                 }
-                                                i += 10;
-                                            } else {
                                                 i += 9;
+                                            } else {
+                                                i += 8;
                                             }
                                         } else {
-                                            i += 8;
+                                            i += 7;
                                         }
                                     } else if (safeCharAt.apply(i + 6) == ',') {
                                         if (Character.isDigit(safeCharAt.apply(i + 7))) {
@@ -127,26 +131,26 @@ public class Day3MullItOver {
                                                         var multiplier = Integer.parseInt(input.substring(i + 7, i + 10));
                                                         result += multiplicand * multiplier;
                                                     }
-                                                    i += 11;
+                                                    i += 10;
                                                     continue;
                                                 } else if (safeCharAt.apply(i + 9) == ')') {
                                                     var multiplicand = Integer.parseInt(input.substring(i + 4, i + 6));
                                                     var multiplier = Integer.parseInt(input.substring(i + 7, i + 9));
                                                     result += multiplicand * multiplier;
                                                 }
-                                                i += 10;
+                                                i += 9;
                                                 continue;
                                             } else if (safeCharAt.apply(i + 8) == ')') {
                                                 var multiplicand = Integer.parseInt(input.substring(i + 4, i + 6));
                                                 var multiplier = Integer.parseInt(input.substring(i + 7, i + 8));
                                                 result += multiplicand * multiplier;
                                             }
-                                            i += 9;
-                                        } else {
                                             i += 8;
+                                        } else {
+                                            i += 7;
                                         }
                                     } else {
-                                        i += 7;
+                                        i += 6;
                                     }
                                 } else if (safeCharAt.apply(i + 5) == ',') {
                                     if (Character.isDigit(safeCharAt.apply(i + 6))) {
@@ -157,38 +161,38 @@ public class Day3MullItOver {
                                                     var multiplier = Integer.parseInt(input.substring(i + 6, i + 9));
                                                     result += multiplicand * multiplier;
                                                 }
-                                                i += 10;
+                                                i += 9;
                                                 continue;
                                             } else if (safeCharAt.apply(i + 8) == ')') {
                                                 var multiplicand = Integer.parseInt(input.substring(i + 4, i + 5));
                                                 var multiplier = Integer.parseInt(input.substring(i + 6, i + 8));
                                                 result += multiplicand * multiplier;
                                             }
-                                            i += 9;
+                                            i += 8;
                                             continue;
                                         } else if (safeCharAt.apply(i + 7) == ')') {
                                             var multiplicand = Integer.parseInt(input.substring(i + 4, i + 5));
                                             var multiplier = Integer.parseInt(input.substring(i + 6, i + 7));
                                             result += multiplicand * multiplier;
                                         }
-                                        i += 8;
-                                    } else {
                                         i += 7;
+                                    } else {
+                                        i += 6;
                                     }
                                 } else {
-                                    i += 6;
+                                    i += 5;
                                 }
                             } else {
-                                i += 5;
+                                i += 4;
                             }
                         } else {
-                            i += 4;
+                            i += 3;
                         }
                     } else {
-                        i += 3;
+                        i += 2;
                     }
                 } else {
-                    i += 2;
+                    i += 1;
                 }
             } else {
                 i += 1;
