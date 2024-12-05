@@ -6,9 +6,8 @@ import static org.testng.Assert.assertEquals;
 
 public class Day5PrintQueueTest {
 
-    @Test
-    void part1_example() {
-        var input = """
+    String example =
+        """
         47|53
         97|13
         97|61
@@ -30,7 +29,7 @@ public class Day5PrintQueueTest {
         47|29
         75|13
         53|13
-
+    
         75,47,61,53,29
         97,61,53,29,13
         75,29,13
@@ -39,7 +38,9 @@ public class Day5PrintQueueTest {
         97,13,75,29,47
         """;
 
-        assertEquals(Day5PrintQueue.sumOfMiddlePageNumbersOfCorrectlyOrderedUpdates(input), 143);
+    @Test
+    void part1_example() {
+        assertEquals(Day5PrintQueue.sumOfMiddlePageNumbersOfCorrectlyOrderedUpdates(example), 143);
     }
 
     @Test
@@ -48,10 +49,10 @@ public class Day5PrintQueueTest {
     }
 
     @Test
-    void part2_example() { assertEquals(Day5PrintQueue.solvePart2(), 123); }
+    void part2_example() { assertEquals(Day5PrintQueue.sumOfMiddlePageNumbersOfIncorrectlyOrderedUpdates(example), 123); }
 
     @Test
     void solves_part2() {
-        assertEquals(Day5PrintQueue.solvePart2(), -1);
+        assertEquals(Day5PrintQueue.solvePart2(), 6142);
     }
 }
